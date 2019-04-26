@@ -47,7 +47,7 @@ echo
 ## VARIABLES
 OUTFILEA='/tmp/WWPN-FabicA.csv'
 OUTFILEB='/tmp/WWPN-FabicB.csv'
-DOMAIN='s70.vmis.nro.ic.gov'
+DOMAIN='FQDN of the domain'
 ## End of Variables
 
 [ "${userName}" != 'admin' ] && userName="${userName}@${DOMAIN}"
