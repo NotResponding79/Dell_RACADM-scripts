@@ -123,10 +123,10 @@ SWINV=$($RACADM swinventory 2>/dev/null > "${FILE}")
                 NICm="$(grep -B1 "${NIC}" "${FILE}" | grep "ElementName" | uniq  | cut -d\= -f2 | sed -e 's/^[ \t]*//' | cut -d\- -f1 | sed -e 's/[[:space:]]*$//')"
                 NICv="$(grep -A2 "${NIC}" "${FILE}" | grep "Current Version" | awk '{print $4}')"
                 NICmac="$(grep -B1 "${NIC}" "${FILE}" | grep "ElementName" | uniq | awk '{print $NF}')"
-                        printf "%s, " "${NIC}" >> outputfile_file
-                        printf "%s, " "${NICm}" >> outputfile_file
-                        printf "%s, " "${NICv}" >> outputfile_file
-                        printf "%s, " "${NICmac}" >> outputfile_file
+                        printf "%s, " "${NIC}" >> "$output_file"
+                        printf "%s, " "${NICm}" >> "$output_file"
+                        printf "%s, " "${NICv}" >> "$output_file"
+                        printf "%s, " "${NICmac}" >> "$output_file"
         done
         echo "" >> "$output_file"
 done < "$filename"
