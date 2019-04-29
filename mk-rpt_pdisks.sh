@@ -80,8 +80,8 @@ while read line; do
         #FILE="${DIR}/${NAME}.out"
         RACADM="/opt/dell/srvadmin/bin/racadm --nocertwarn -r ${NAME} -u ${userName} -p ${passWord}"
         ## printing Hostname ##
-        print "%s, " "$NAME" >> "$output_file"
-        print "%s, " "$IP" >> "$output_file"
+        printf "%s, " "$NAME" >> "$output_file"
+        printf "%s, " "$IP" >> "$output_file"
         ## setting file locations and info
         CONTR="${DIR}/${NAME}_CONTR.out"
         VSDKS="${DIR}/${NAME}_VSDKS.out"
