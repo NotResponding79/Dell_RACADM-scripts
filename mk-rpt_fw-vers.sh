@@ -13,18 +13,6 @@ umask 022
 \unalias -a
 ## End Secure scripting header
 
-## get options(input info)
-while getops 'f:s:' OPTION; do
-        case ${OPTION} in
-                f) filename="${OPTARG}" ;;
-                s) script="${OPTARG}" ;;
-                h) echo ''
-                   echo "USAGE: $0 [-f server list(CSV)] [-s Script to run]"
-                   echo ''
-                exit 0;;
-        esac
-done
-## End of get options(input info)
 
 # Start Color definitions
 
@@ -69,7 +57,6 @@ ECHO=''
 dir=${pwd}
 DIR="${dir}/SoftwareInventory"
 [ ! -d "${DIR}" ] && ${ECHO} mkdir -p "${DIR}"
-DomainName='FQDN'
 ##### UN/PW #####
 userName='admin'
 passWord='calvin'
@@ -88,13 +75,13 @@ echo "Host,IP,BIOS Version,Lifecycle Controller,PERC Model,PERC FW Vers,Qlogic F
 # End of Writing column headings
 
 while read line; do
-        IFS=',' read NAME IP MAC<<< "$line"
-        echo "Getting configurations for $NAME...."
-        print "$s, " "$NAME" >> "$output_file"
-        print "$s, " "$IP" >> "$output_file"
+        IFS=',' read -r NAME IP<<< "$line"
+        echo -e "Getting configurations for ${BRed}$NAME${NC}...."
+        print "%s, " "$NAME" >> "$output_file"
+        print "%s, " "$IP" >> "$output_file"
 FILE="${DIR}/${NAME}.out"
-RACADM="/opt/dell/srvadmin/bin/racadm -r ${hostName} -u ${userName} -p ${passWord}"
-SWINV=$($RACADM swinventory 2>/dev/null > "${FILE}")
+RACADM="/opt/dell/srvadmin/bin/racadm -r ${NAME} -u ${userName} -p ${passWord}"
+#SWINV=$($RACADM swinventory 2>/dev/null > "${FILE}")
 
         #Getting BIOS Version
         BIOS="$(grep -A 4 BIOS "${FILE}" | grep -m 1 "Current Version")"
