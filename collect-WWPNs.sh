@@ -6,7 +6,7 @@ umask 022
 ## End Secure scripting header
 
 ## get options(input info)
-while getops 'u:p:s:e:r:h' OPTION; do
+while getopts 'u:p:s:e:r:h' OPTION; do
         case ${OPTION} in
                 u) userName="${OPTARG}" ;;
                 p) passWord="${OPTARG}" ;;
