@@ -93,7 +93,7 @@ ECHO=''
 ## VARIABLES
 dir=${pwd}
 RACADM="/opt/dell/srvadmin/bin/racadm --nocertwarn -r ${NAME} -u ${userName} -p ${passWord}"
-not_pingable=$Sdir/not_pingable"
+not_pingable="$Sdir/not_pingable"
 pingable="$dir/pingable"
 
 ## End of Variables
