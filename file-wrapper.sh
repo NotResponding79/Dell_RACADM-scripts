@@ -6,7 +6,7 @@ umask 022
 ## End Secure scripting header
 
 ## get options(input info)
-while getops 'f:s:' OPTION; do
+while getopts 'f:s:' OPTION; do
         case ${OPTION} in
                 f) filename="${OPTARG}" ;;
                 s) script="${OPTARG}" ;;
