@@ -91,8 +91,8 @@ ECHO=''
 [ ${TEST} -ne 0 ] && ECHO='/bin/echo'
 
 ## VARIABLES
-dir=${pwd}
-RACADM="/opt/dell/srvadmin/bin/racadm --nocertwarn -r ${NAME} -u ${userName} -p ${passWord}"
+dir=$(pwd)
+RACADM="/opt/dell/srvadmin/bin/racadm --nocertwarn -r ${IP} -u ${userName} -p ${passWord}"
 not_pingable="$Sdir/not_pingable"
 pingable="$dir/pingable"
 
@@ -100,7 +100,7 @@ pingable="$dir/pingable"
 
 ## Start of scripting ##
 echo -e "Checking server ${BRed}$NAME${NC}...."
-pingCheck=$(ping -w 1 -c 1 ${NAME} 2> /dev/null)
+pingCheck=$(ping -w 1 -c 1 ${IP} 2> /dev/null)
 if [ $? -eq 0 ]; then
         echo "${NAME}" >> ${pingable}
 else
